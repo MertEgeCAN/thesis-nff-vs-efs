@@ -40,10 +40,12 @@ def plot_likelihood():
 
     y = 1 - (data_binom['Cumulative_Likelihood'] / data_normal['Cumulative_Likelihood'])
     y = (y / y.max()) * 100
-    x = range(len(data_binom))
-    plt.plot(x, y, label='1 - Binomial / Normal', color='blue')
+    x = np.arange(len(y)) / len(y) * 100
+    plt.plot(x, y, label='1 - Binomial / Normal')
 
     plt.title(config.PATH_FILE)
+    plt.xlim(0, 100)
+    plt.ylim(0, 100)
     plt.xlabel('Run Number')
     plt.ylabel('Relative Difference')
     plt.legend()

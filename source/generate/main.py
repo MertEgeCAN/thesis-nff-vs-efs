@@ -56,12 +56,12 @@ def main():
                         run in test.nff_indexes,
                         f'tc{test.id + config.TESTS * config.SUITE}',
                         0,
-                        f'v{release.id}',
-                        datetime_test.strftime('%Y-%m-%dT%H:%M:%SZ'), verdict
+                        '{v' + str(release.id) + '}',
+                        datetime_test.strftime('%Y-%m-%dT%H:%M:%SZ'),
+                        verdict
                     ])
                     datetime_test = update_date(datetime_test)
                 writer.writerows(chunk)
-
                 if datetime_suite < datetime_test:
                     datetime_suite = datetime_test
     end = time.time()

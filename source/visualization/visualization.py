@@ -16,6 +16,8 @@ def plot_rate():
         plt.plot(x, y, label=f'Release {release}')
 
     plt.title(config.PATH_FILE)
+    plt.xlim(0, 0.5)
+    plt.ylim(0, 100)
     plt.xlabel('Flake Rate')
     plt.ylabel('Percentage of Tests')
     plt.legend()
@@ -35,6 +37,8 @@ def plot_stable_rate():
         plt.plot(x, y, label=f'Release {release}')
 
     plt.title(config.PATH_FILE)
+    plt.xlim(0, 0.5)
+    plt.ylim(0, 100)
     plt.xlabel('Stable Rate')
     plt.ylabel('Percentage of Tests')
     plt.legend()
@@ -54,6 +58,8 @@ def plot_confidence():
         plt.plot(x, y, label=f"Release {release}")
 
     plt.title(config.PATH_FILE)
+    plt.xlim(0, config.RUNS)
+    plt.ylim(0, 100)
     plt.xlabel("Run")
     plt.ylabel("Percentage of Tests with Confidence >= 95%")
     plt.legend()
@@ -73,6 +79,8 @@ def plot_instability():
         plt.plot(x, y, label=f"Release {release}")
 
     plt.title(config.PATH_FILE)
+    plt.xlim(0, config.RUNS)
+    plt.ylim(0, 100)
     plt.xlabel("Run")
     plt.ylabel("Sum of Significant Cumulative Instability Changes")
     plt.legend()
@@ -92,6 +100,8 @@ def plot_savings_1():
         plt.plot(x, y, label=f"Release {release}")
 
     plt.title(config.PATH_FILE)
+    plt.xlim(0, config.RUNS)
+    plt.ylim(0, 100)
     plt.xlabel("Run")
     plt.ylabel("Cumulative Percentage of Failed Tests")
     plt.legend()
@@ -111,6 +121,8 @@ def plot_savings_2():
         plt.plot(x, y, label=f"Release {release}")
 
     plt.title(config.PATH_FILE)
+    plt.xlim(0, config.RUNS)
+    plt.ylim(0, 100)
     plt.xlabel("Run")
     plt.ylabel("Cumulative Percentage of Savings")
     plt.legend()

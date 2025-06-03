@@ -5,8 +5,8 @@ MAIN_ORDER = True
 
 SUITE = 0
 RELEASES = 5
-TESTS = 1000
-RUNS = 200
+TESTS = 500
+RUNS = 400
 
 FLAKINESS = 0.8
 NFF_RANGE = int(RUNS / 2)
@@ -44,7 +44,6 @@ VERDICT_FLAKY_PROBABILITY = [0.25, 0.25, 0.5]
 
 COUNT_TREND = None
 COUNT_TRENDS = ['uniform', 'increase', 'decrease', 'increase_exponential', 'decrease_exponential']
-# COUNT_TRENDS = ['increase']
 COUNT_INCREASE = {
     "start": 1,
     "growth": 5
@@ -61,8 +60,7 @@ COUNT_DECREASE_EXPONENTIAL = {
 }
 
 INDEX_TREND = None
-INDEX_TRENDS = ['increase', 'decrease', 'increase_exponential', 'decrease_exponential', 'increase_sudden', 'decrease_sudden']
-# INDEX_TRENDS = ['increase']
+INDEX_TRENDS = ['uniform', 'increase', 'decrease', 'increase_exponential', 'decrease_exponential', 'increase_sudden', 'decrease_sudden']
 INDEX_INCREASE = {
     "start": 1,
     "growth": 5
