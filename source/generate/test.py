@@ -30,7 +30,8 @@ class Test:
         if config.INDEX_TREND == 'decrease_sudden':
             return rng.choice(a=config.RUNS, size=self.nff_count, replace=False, p=self._weight_decrease_sudden())
         if config.INDEX_TREND == 'uniform':
-            return rng.choice(a=config.RUNS, size=self.nff_count, replace=False, p=self._weight_uniform())
+            return rng.choice(a=config.RUNS, size=self.nff_count, replace=False)
+        return None
 
     @staticmethod
     def _weight_increase():
@@ -61,8 +62,3 @@ class Test:
     def _weight_decrease_sudden():
         weights = [config.INDEX_DECREASE_SUDDEN['low'] if i < config.INDEX_DECREASE_SUDDEN['transition'] else config.INDEX_DECREASE_SUDDEN['high'] for i in range(config.RUNS)]
         return sorted([w / sum(weights) for w in weights], reverse=True)
-
-    @staticmethod
-    def _weight_uniform():
-        weights = rng.random(size=config.RUNS)
-        return [w / sum(weights) for w in weights]

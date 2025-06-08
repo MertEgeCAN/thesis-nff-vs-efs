@@ -68,6 +68,7 @@ def calculate_likelihood():
 
     df_raw.to_csv(config.PATH_RAW, index=False)
 
+
 def calculate_unstable():
     df_raw = pd.read_csv(config.PATH_RAW)
 

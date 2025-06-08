@@ -23,7 +23,8 @@ def set_verdict(test, run):
 
 
 def main():
-    start = time.time()
+    start_total = time.time()
+
     with open(config.PATH_RAW, mode='w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow([
@@ -56,7 +57,7 @@ def main():
                         run in test.nff_indexes,
                         f'tc{test.id + config.TESTS * config.SUITE}',
                         0,
-                        '{v' + str(release.id) + '}',
+                        'v' + str(release.id) + '',
                         datetime_test.strftime('%Y-%m-%dT%H:%M:%SZ'),
                         verdict
                     ])
@@ -64,10 +65,11 @@ def main():
                 writer.writerows(chunk)
                 if datetime_suite < datetime_test:
                     datetime_suite = datetime_test
-    end = time.time()
-    print(f"generate finished in {end - start:.4f} seconds")
+
+    end_total = time.time()
+    print(f"--- generate --- finished in {end_total - start_total:.4f} seconds")
 
 
 if __name__ == '__main__':
-    # main()
+    main()
     pass

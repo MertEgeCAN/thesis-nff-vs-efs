@@ -4,6 +4,8 @@ from source.visualization.visualization import *
 
 
 def main():
+    start_total = time.time()
+
     start = time.time()
     plot_rate()
     end = time.time()
@@ -34,7 +36,10 @@ def main():
     end = time.time()
     print(f"plot_savings_2 finished in {end - start:.4f} seconds")
 
+    end_total = time.time()
+    print(f"--- visualization --- finished in {end_total - start_total:.4f} seconds")
+
 
 if __name__ == '__main__':
-    # main()
+    main()
     pass

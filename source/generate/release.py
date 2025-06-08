@@ -32,7 +32,8 @@ class Release:
         if config.COUNT_TREND == 'decrease_exponential':
             return sorted(rng.choice(a=config.NFF_RANGE, size=config.TESTS, p=self._weight_decrease_exponential()))
         if config.COUNT_TREND == 'uniform':
-            return sorted(rng.choice(a=config.NFF_RANGE, size=config.TESTS, p=self._weight_uniform()))
+            return sorted(rng.choice(a=config.NFF_RANGE, size=config.TESTS))
+        return None
 
     @staticmethod
     def _weight_increase():
@@ -53,8 +54,3 @@ class Release:
     def _weight_decrease_exponential():
         weights = [math.exp(config.COUNT_DECREASE_EXPONENTIAL['lambda'] * i) for i in range(config.NFF_RANGE)]
         return sorted([w / sum(weights) for w in weights], reverse=True)
-
-    @staticmethod
-    def _weight_uniform():
-        weights = rng.random(size=config.NFF_RANGE)
-        return sorted([w / sum(weights) for w in weights])

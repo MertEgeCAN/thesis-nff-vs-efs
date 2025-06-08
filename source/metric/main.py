@@ -4,6 +4,8 @@ from source.metric.metric import *
 
 
 def main():
+    start_total = time.time()
+
     start = time.time()
     calculate_rate()
     end = time.time()
@@ -34,6 +36,9 @@ def main():
     end = time.time()
     print(f"calculate_unstable finished in {end - start:.4f} seconds")
 
+    end_total = time.time()
+    print(f"--- metric --- finished in {end_total - start_total:.4f} seconds")
+
 if __name__ == '__main__':
-    # main()
+    main()
     pass
