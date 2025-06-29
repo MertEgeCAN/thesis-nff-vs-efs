@@ -1,3 +1,5 @@
+import numpy as np
+
 MAIN_GENERATE = False
 MAIN_METRIC = False
 MAIN_VISUAL = False
@@ -11,7 +13,9 @@ RUNS = 400
 
 FLAKINESS = 0.8
 NFF_RANGE = int(RUNS / 2)
+
 RANDOM_SEED = 42
+RANDOM_RNG = np.random.default_rng(RANDOM_SEED)
 
 FILE = None
 
