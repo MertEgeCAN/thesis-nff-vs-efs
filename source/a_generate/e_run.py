@@ -38,9 +38,6 @@ class Run:
         outcome = config.RANDOM_RNG.choice(config.PROBABILITY_OUTCOME_CLEAN, p=config.PROBABILITY_OUTCOME_CLEAN_RATIO)
         report = False
 
-        if self.p_clear:
-            outcome = config.RANDOM_RNG.choice(config.PROBABILITY_OUTCOME_CLEAN, p=config.PROBABILITY_OUTCOME_CLEAN_RATIO)
-            report = False
         if self.p_fault:
             outcome = config.RANDOM_RNG.choice(config.PROBABILITY_OUTCOME_FAULT, p=config.PROBABILITY_OUTCOME_FAULT_RATIO)
             report = True
