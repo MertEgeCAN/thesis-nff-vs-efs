@@ -464,10 +464,10 @@ def plot_aggregated_count_trend_grouped_bars_3(df):
 # plot_summary_table(df_summary)
 
 
-df_summary = summarize_release_rates_grouped_by_index("../../" + config.FOLDER_GROUP)
+df_summary = summarize_release_rates_grouped_by_index("../../" + config.PATH_FOLDER_GROUP)
 plot_summary_table_2(df_summary)
 
-df_verdict = analyze_verdict_distribution("../../" + config.FOLDER_RAW, "../../" + config.FOLDER_GROUP)
+df_verdict = analyze_verdict_distribution("../../" + config.PATH_FOLDER_RAW, "../../" + config.PATH_FOLDER_GROUP)
 plot_verdict_table(df_verdict)
 # plot_verdict_summary(df_verdict)
 # plot_verdict_summary_compact_vertical(df_verdict)

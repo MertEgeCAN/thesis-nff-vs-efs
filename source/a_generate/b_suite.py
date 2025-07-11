@@ -1,5 +1,5 @@
-from . import config
-from source.generate_2.test import Test
+import config
+from source.a_generate.c_test import Test
 
 
 class Suite:
@@ -9,5 +9,5 @@ class Suite:
     def generate_tests(self):
         tests = []
         for i in range(config.MAX_TEST):
-            tests.append(Test(i))
+            tests.append(Test(i + 1))
         return tests

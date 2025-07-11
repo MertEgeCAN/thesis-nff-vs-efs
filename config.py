@@ -1,135 +1,112 @@
 import numpy as np
 
-MAIN_GENERATE = False
-MAIN_METRIC = False
-MAIN_VISUAL = False
-MAIN_ORDER = False
-MAIN_COMPARE = True
-
-SUITE = 0
-RELEASES = 5
-TESTS = 500
-RUNS = 400
-
-FLAKINESS = 0.8
-NFF_RANGE = int(RUNS / 2)
-
 RANDOM_SEED = 42
 RANDOM_RNG = np.random.default_rng(RANDOM_SEED)
 
-FILE = None
+MAIN_GENERATE = True
+MAIN_METRIC = True
+MAIN_ORDER = True
+MAIN_COMPARE = True
+MAIN_VISUAL = False
 
-PATH_RAW = None
-PATH_GROUP = None
-PATH_BINOM = None
-PATH_NORMAL = None
-PATH_EFS = None
+MAX_TEST = 100
+MAX_VERSION = 4
+MAX_RUN = 250
 
-PATH_RATE = None
-PATH_STABLE = None
-PATH_CONFIDENCE = None
-PATH_INSTABILITY = None
-PATH_SAVINGS_1 = None
-PATH_SAVINGS_2 = None
-PATH_LIKELIHOOD = None
+SUITE = 0
+SUITE_NAME = None
 
-PATH_COMPARE = 'data/compare.csv'
+TREND_VERSION = None
+TRENDS_VERSION = ['uniform', 'increase', 'decrease', 'increase_exponential', 'decrease_exponential', 'increase_sudden', 'decrease_sudden']
+TREND_RUN = None
+TRENDS_RUN = ['uniform', 'increase', 'decrease', 'increase_exponential', 'decrease_exponential', 'increase_sudden', 'decrease_sudden']
 
-FOLDER_RAW = 'data/raw/'
-FOLDER_GROUP = 'data/group/'
-FOLDER_BINOM = 'data/binom/'
-FOLDER_NORMAL = 'data/normal/'
-FOLDER_EFS = 'data/OUTPUT/'
+PROBABILITY_CLEAR = 0.25
+PROBABILITY_FAULT = 0.75
+PROBABILITY_FLAKY_LOW = 0.2
+PROBABILITY_FLAKY_HIGH = 0.3
+PROBABILITY_FLAKY_DELTA = 0.2
+PROBABILITY_OUTCOME_CLEAN = ['SUCCESSFUL', 'SKIP']
+PROBABILITY_OUTCOME_CLEAN_RATIO = [0.75, 0.25]
+PROBABILITY_OUTCOME_FAULT = ['FAIL', 'SKIP']
+PROBABILITY_OUTCOME_FAULT_RATIO = [0.75, 0.25]
+PROBABILITY_OUTCOME_FLAKY = ['SUCCESSFUL', 'SKIP', 'FAIL', 'ERROR']
+PROBABILITY_OUTCOME_FLAKY_RATIO = [0.25, 0.25, 0.25, 0.25]
+PROBABILITY_REPORT = 0.25
 
-FOLDER_RATE = 'plot/rate/'
-FOLDER_STABLE = 'plot/stable/'
-FOLDER_CONFIDENCE = 'plot/confidence/'
-FOLDER_INSTABILITY = 'plot/instability/'
-FOLDER_SAVINGS_1 = 'plot/savings_1/'
-FOLDER_SAVINGS_2 = 'plot/savings_2/'
-FOLDER_LIKELIHOOD = 'plot/likelihood/'
-
-FOLDER_COMPARE = 'plot/comparison/'
-
-VERDICT_CLEAN = ['SUCCESSFUL',
-                 'SKIP',
-                 'FAIL',
-                 'ERROR']
-VERDICT_CLEAN_PROBABILITY = [0.7,
-                             0.1,
-                             0.1,
-                             0.1]
-VERDICT_FLAKY = ['SKIP',
-                 'FAIL',
-                 'ERROR']
-VERDICT_FLAKY_PROBABILITY = [0.25,
-                             0.25,
-                             0.5]
-
-COUNT_TREND = None
-COUNT_TRENDS = ['uniform',
-                'increase',
-                'decrease',
-                'increase_exponential',
-                'decrease_exponential']
-COUNT_INCREASE = {
-    "start": 1,
-    "growth": 5
-}
-COUNT_DECREASE = {
-    "start": 1,
-    "growth": 5
-}
-COUNT_INCREASE_EXPONENTIAL = {
-    'lambda': 0.05
-}
-COUNT_DECREASE_EXPONENTIAL = {
-    'lambda': 0.05
-}
-
-INDEX_TREND = None
-INDEX_TRENDS = ['uniform',
-                'increase',
-                'decrease',
-                'increase_exponential',
-                'decrease_exponential',
-                'increase_sudden',
-                'decrease_sudden']
-INDEX_INCREASE = {
-    "start": 1,
-    "growth": 5
-}
-INDEX_DECREASE = {
-    "start": 1,
-    "growth": 5
-}
-INDEX_INCREASE_EXPONENTIAL = {
-    "lambda": 0.05
-}
-INDEX_DECREASE_EXPONENTIAL = {
-    "lambda": 0.05
-}
-INDEX_INCREASE_SUDDEN = {
-    "transition": int(RUNS * 0.75),
-    "low": 1,
-    "high": 5
-}
-INDEX_DECREASE_SUDDEN = {
-    "transition": int(RUNS * 0.75),
-    "low": 1,
-    "high": 5
-}
-
-COMPARE_HEADER = [
+HEADER_TRUTH = [
+    'Test',
+    'Version',
+    'Run',
+    'P_Clear',
+    'P_Fault',
+    'P_Flaky_Test',
+    'P_Flaky_Version',
+    'P_Flaky_Run',
+    'Outcome',
+    'Report'
+]
+HEADER_NFF = [
+    'Test',
+    'Version',
+    'Run',
+    'Date',
+    'Outcome',
+    'Report'
+]
+HEADER_EFS = [
+    'TEST_NAME',
+    'VERSION_ID',
+    'EXECUTION_TIME',
+    'VERDICT',
+    'ENVIRONMENT_ID'
+]
+HEADER_COMPARE = [
     'x',
     'y',
-    'binomial_spearman',
-    'binomial_kendall',
-    'binomial_hit',
-    'efs_spearman',
-    'efs_kendall',
-    'efs_hit',
-    'difference_spearman',
-    'difference_kendall',
-    'difference_hit'
+    'nff_spearman',
+    'nff_kendall',
+    'nff_hit',
+    # 'efs_spearman',
+    # 'efs_kendall',
+    # 'efs_hit',
+    # 'difference_spearman',
+    # 'difference_kendall',
+    # 'difference_hit'
 ]
+
+PATH_FILE_GENERATE_TRUTH = None
+PATH_FILE_GENERATE_NFF = None
+PATH_FILE_GENERATE_EFS = None
+PATH_FILE_ORDER_NORMAL = None
+PATH_FILE_ORDER_NFF = None
+PATH_FILE_ORDER_EFS = None
+PATH_FILE_COMPARE = 'output/2_compare/compare.csv'
+PATH_FILE_VISUAL_PRE_TEST = None
+PATH_FILE_VISUAL_PRE_VERSION = None
+PATH_FILE_VISUAL_PRE_RUN = None
+PATH_FILE_VISUAL_POST_RATE = None
+PATH_FILE_VISUAL_POST_STABLE = None
+PATH_FILE_VISUAL_POST_CONFIDENCE = None
+PATH_FILE_VISUAL_POST_INSTABILITY = None
+PATH_FILE_VISUAL_POST_SAVINGS_1 = None
+PATH_FILE_VISUAL_POST_SAVINGS_2 = None
+PATH_FILE_VISUAL_POST_LIKELIHOOD = None
+
+PATH_FOLDER_GENERATE_TRUTH = 'output/0_data/0_truth/'
+PATH_FOLDER_GENERATE_NFF = 'output/0_data/1_nff/'
+PATH_FOLDER_GENERATE_EFS = 'output/0_data/2_efs/'
+PATH_FOLDER_ORDER_NORMAL = 'output/1_order/0_normal/'
+PATH_FOLDER_ORDER_NFF = 'output/1_order/1_nff/'
+PATH_FOLDER_ORDER_EFS = 'output/1_order/2_efs/'
+PATH_FOLDER_COMPARE = 'output/2_compare/'
+PATH_FOLDER_VISUAL_PRE_TEST = 'output/3_plot/1_pre/0_test/'
+PATH_FOLDER_VISUAL_PRE_VERSION = 'output/3_plot/1_pre/1_version/'
+PATH_FOLDER_VISUAL_PRE_RUN = 'output/3_plot/1_pre/2_run/'
+PATH_FOLDER_VISUAL_POST_RATE = 'output/3_plot/2_post/rate/'
+PATH_FOLDER_VISUAL_POST_STABLE = 'output/3_plot/2_post/stable/'
+PATH_FOLDER_VISUAL_POST_CONFIDENCE = 'output/3_plot/2_post/confidence/'
+PATH_FOLDER_VISUAL_POST_INSTABILITY = 'output/3_plot/2_post/instability/'
+PATH_FOLDER_VISUAL_POST_SAVINGS_1 = 'output/3_plot/2_post/savings_1/'
+PATH_FOLDER_VISUAL_POST_SAVINGS_2 = 'output/3_plot/2_post/savings_2/'
+PATH_FOLDER_VISUAL_POST_LIKELIHOOD = 'output/3_plot/2_post/likelihood/'

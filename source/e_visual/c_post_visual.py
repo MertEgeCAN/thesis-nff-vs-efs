@@ -1,3 +1,5 @@
+import time
+
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
@@ -15,14 +17,14 @@ def plot_rate():
         y = np.arange(len(x)) / len(x) * 100
         plt.plot(x, y, label=f'Release {release}')
 
-    plt.title(config.FILE)
+    plt.title(config.SUITE_NAME)
     plt.xlim(0, 0.5)
     plt.ylim(0, 100)
     plt.xlabel('NFF Rate')
     plt.ylabel('Percentage of Tests')
     plt.legend()
     plt.grid(True)
-    plt.savefig(config.PATH_RATE, dpi=300, bbox_inches='tight')
+    plt.savefig(config.PATH_FILE_VISUAL_POST_RATE, dpi=300, bbox_inches='tight')
     plt.close()
 
 
@@ -36,14 +38,14 @@ def plot_stable_rate():
         y = np.arange(len(x)) / len(x) * 100
         plt.plot(x, y, label=f'Release {release}')
 
-    plt.title(config.FILE)
+    plt.title(config.SUITE_NAME)
     plt.xlim(0, 0.5)
     plt.ylim(0, 100)
     plt.xlabel('Stable NFF Rate')
     plt.ylabel('Percentage of Tests')
     plt.legend()
     plt.grid(True)
-    plt.savefig(config.PATH_STABLE, dpi=300, bbox_inches='tight')
+    plt.savefig(config.PATH_FILE_VISUAL_POST_STABLE, dpi=300, bbox_inches='tight')
     plt.close()
 
 
@@ -57,14 +59,14 @@ def plot_confidence():
         x = np.linspace(0, config.RUNS, len(y))
         plt.plot(x, y, label=f"Release {release}")
 
-    plt.title(config.FILE)
+    plt.title(config.SUITE_NAME)
     plt.xlim(0, config.RUNS)
     plt.ylim(0, 100)
     plt.xlabel("Run")
     plt.ylabel("Percentage of Tests with Confidence >= 95%")
     plt.legend()
     plt.grid(True)
-    plt.savefig(config.PATH_CONFIDENCE, dpi=300, bbox_inches='tight')
+    plt.savefig(config.PATH_FILE_VISUAL_POST_CONFIDENCE, dpi=300, bbox_inches='tight')
     plt.close()
 
 
@@ -78,14 +80,14 @@ def plot_instability():
         x = np.linspace(0, config.RUNS, len(y))
         plt.plot(x, y, label=f"Release {release}")
 
-    plt.title(config.FILE)
+    plt.title(config.SUITE_NAME)
     plt.xlim(0, config.RUNS)
     plt.ylim(0, 100)
     plt.xlabel("Run")
     plt.ylabel("Percentage of Tests with Unstable Flag")
     plt.legend()
     plt.grid(True)
-    plt.savefig(config.PATH_INSTABILITY, dpi=300, bbox_inches='tight')
+    plt.savefig(config.PATH_FILE_VISUAL_POST_INSTABILITY, dpi=300, bbox_inches='tight')
     plt.close()
 
 
@@ -99,14 +101,14 @@ def plot_savings_1():
         x = np.linspace(0, config.RUNS, len(y))
         plt.plot(x, y, label=f"Release {release}")
 
-    plt.title(config.FILE)
+    plt.title(config.SUITE_NAME)
     plt.xlim(0, config.RUNS)
     plt.ylim(0, 100)
     plt.xlabel("Run")
     plt.ylabel("Percentage of Tests with at least one NFF")
     plt.legend()
     plt.grid(True)
-    plt.savefig(config.PATH_SAVINGS_1, dpi=300, bbox_inches='tight')
+    plt.savefig(config.PATH_FILE_VISUAL_POST_SAVINGS_1, dpi=300, bbox_inches='tight')
     plt.close()
 
 
@@ -120,12 +122,43 @@ def plot_savings_2():
         x = np.linspace(0, config.RUNS, len(y))
         plt.plot(x, y, label=f"Release {release}")
 
-    plt.title(config.FILE)
+    plt.title(config.SUITE_NAME)
     plt.xlim(0, config.RUNS)
     plt.ylim(0, 100)
     plt.xlabel("Run")
     plt.ylabel("Percentage of Tests that Failed but Stable")
     plt.legend()
     plt.grid(True)
-    plt.savefig(config.PATH_SAVINGS_2, dpi=300, bbox_inches='tight')
+    plt.savefig(config.PATH_FILE_VISUAL_POST_SAVINGS_2, dpi=300, bbox_inches='tight')
     plt.close()
+
+def post_plot():
+    start = time.time()
+    plot_rate()
+    end = time.time()
+    print(f"plot_nff_rate finished in {end - start:.4f} seconds")
+
+    start = time.time()
+    plot_stable_rate()
+    end = time.time()
+    print(f"plot_stable_nff_rate finished in {end - start:.4f} seconds")
+
+    start = time.time()
+    plot_confidence()
+    end = time.time()
+    print(f"plot_confidence finished in {end - start:.4f} seconds")
+
+    start = time.time()
+    plot_instability()
+    end = time.time()
+    print(f"plot_instability finished in {end - start:.4f} seconds")
+
+    start = time.time()
+    plot_savings_1()
+    end = time.time()
+    print(f"plot_savings_1 finished in {end - start:.4f} seconds")
+
+    start = time.time()
+    plot_savings_2()
+    end = time.time()
+    print(f"plot_savings_2 finished in {end - start:.4f} seconds")

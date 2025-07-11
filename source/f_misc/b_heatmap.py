@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 import config
 
-df = pd.read_csv('../../' + config.PATH_COMPARE)
+df = pd.read_csv('../../' + config.PATH_FILE_COMPARE)
 
 def plot_heatmap(pivot_data, title, vmin=None, vmax=None):
     plt.figure(figsize=(16, 8))
