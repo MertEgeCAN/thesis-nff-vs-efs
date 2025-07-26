@@ -29,19 +29,11 @@ if __name__ == '__main__':
         config.PATH_FOLDER_GENERATE_NFF,
         config.PATH_FOLDER_GENERATE_EFS,
         config.PATH_FOLDER_ORDER_NFF,
-        config.PATH_FOLDER_ORDER_NORMAL,
         config.PATH_FOLDER_ORDER_EFS,
         config.PATH_FOLDER_COMPARE,
         config.PATH_FOLDER_VISUAL_PRE_TEST,
         config.PATH_FOLDER_VISUAL_PRE_VERSION,
         config.PATH_FOLDER_VISUAL_PRE_RUN,
-        config.PATH_FOLDER_VISUAL_POST_RATE,
-        config.PATH_FOLDER_VISUAL_POST_STABLE,
-        config.PATH_FOLDER_VISUAL_POST_CONFIDENCE,
-        config.PATH_FOLDER_VISUAL_POST_INSTABILITY,
-        config.PATH_FOLDER_VISUAL_POST_SAVINGS_1,
-        config.PATH_FOLDER_VISUAL_POST_SAVINGS_2,
-        config.PATH_FOLDER_VISUAL_POST_LIKELIHOOD,
     ]
     for name in folder_names:
         os.makedirs(name, exist_ok=True)
@@ -62,19 +54,11 @@ if __name__ == '__main__':
             config.PATH_FILE_GENERATE_NFF = config.PATH_FOLDER_GENERATE_NFF + config.SUITE_NAME + '.csv'
             config.PATH_FILE_GENERATE_EFS = config.PATH_FOLDER_GENERATE_EFS + config.SUITE_NAME + '.csv'
             config.PATH_FILE_ORDER_NFF = config.PATH_FOLDER_ORDER_NFF + config.SUITE_NAME + '.csv'
-            config.PATH_FILE_ORDER_NORMAL = config.PATH_FOLDER_ORDER_NORMAL + config.SUITE_NAME + '.csv'
-            config.PATH_FILE_ORDER_EFS = config.PATH_FOLDER_ORDER_EFS + config.SUITE_NAME + '/0/LAMBDA_0.1/PERIOD_24/UA_WEIGHTED_SCORE_1/MULTI_TRANSITION_RATE/VerdictPair[ALL]'
+            config.PATH_FILE_ORDER_EFS = config.PATH_FOLDER_ORDER_EFS + config.SUITE_NAME + '.csv'
             config.PATH_FILE_COMPARE = config.PATH_FOLDER_COMPARE + 'compare.csv'
             config.PATH_FILE_VISUAL_PRE_TEST = config.PATH_FOLDER_VISUAL_PRE_TEST + config.SUITE_NAME + '.png'
             config.PATH_FILE_VISUAL_PRE_VERSION = config.PATH_FOLDER_VISUAL_PRE_VERSION + config.SUITE_NAME + '.png'
             config.PATH_FILE_VISUAL_PRE_RUN = config.PATH_FOLDER_VISUAL_PRE_RUN + config.SUITE_NAME + '.png'
-            config.PATH_FILE_VISUAL_POST_RATE = config.PATH_FOLDER_VISUAL_POST_RATE + config.SUITE_NAME + '.png'
-            config.PATH_FILE_VISUAL_POST_STABLE = config.PATH_FOLDER_VISUAL_POST_STABLE + config.SUITE_NAME + '.png'
-            config.PATH_FILE_VISUAL_POST_CONFIDENCE = config.PATH_FOLDER_VISUAL_POST_CONFIDENCE + config.SUITE_NAME + '.png'
-            config.PATH_FILE_VISUAL_POST_INSTABILITY = config.PATH_FOLDER_VISUAL_POST_INSTABILITY + config.SUITE_NAME + '.png'
-            config.PATH_FILE_VISUAL_POST_SAVINGS_1 = config.PATH_FOLDER_VISUAL_POST_SAVINGS_1 + config.SUITE_NAME + '.png'
-            config.PATH_FILE_VISUAL_POST_SAVINGS_2 = config.PATH_FOLDER_VISUAL_POST_SAVINGS_2 + config.SUITE_NAME + '.png'
-            config.PATH_FILE_VISUAL_POST_LIKELIHOOD = config.PATH_FOLDER_VISUAL_POST_LIKELIHOOD + config.SUITE_NAME + '.png'
 
             print('====================     ' + config.SUITE_NAME + '     ====================')
             print(f"-- execute started")

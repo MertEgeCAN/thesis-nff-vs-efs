@@ -14,7 +14,7 @@ class Run:
 
         self.outcome, self.report = self.assign_result()
 
-        self.date = datetime.now() + timedelta(days=(config.MAX_RUN * self.version + self.name), hours=config.RANDOM_RNG.uniform(0, 24), minutes=config.RANDOM_RNG.uniform(0, 59), seconds=config.RANDOM_RNG.uniform(0, 59))
+        self.date = (datetime.now() + timedelta(days=(config.MAX_RUN * self.version + self.name), hours=config.RANDOM_RNG.uniform(0, 24), minutes=config.RANDOM_RNG.uniform(0, 59), seconds=config.RANDOM_RNG.uniform(0, 59))).strftime('%Y-%m-%dT%H:%M:%SZ')
 
     def calculate_p_flaky(self, p_flaky):
         ratio = self.name / config.MAX_RUN
@@ -35,15 +35,19 @@ class Run:
         return p_flaky
 
     def assign_result(self):
-        outcome = config.RANDOM_RNG.choice(config.PROBABILITY_OUTCOME_CLEAN, p=config.PROBABILITY_OUTCOME_CLEAN_RATIO)
-        report = False
 
-        if self.p_fault:
+        if self.p_clear:
+            outcome = config.RANDOM_RNG.choice(config.PROBABILITY_OUTCOME_CLEAR, p=config.PROBABILITY_OUTCOME_CLEAR_RATIO)
+            report = True
+        elif self.p_fault:
             outcome = config.RANDOM_RNG.choice(config.PROBABILITY_OUTCOME_FAULT, p=config.PROBABILITY_OUTCOME_FAULT_RATIO)
             report = True
-        if config.RANDOM_RNG.random() < self.p_flaky:
+        elif config.RANDOM_RNG.random() < self.p_flaky:
             outcome = config.RANDOM_RNG.choice(config.PROBABILITY_OUTCOME_FLAKY, p=config.PROBABILITY_OUTCOME_FLAKY_RATIO)
             report = config.RANDOM_RNG.random() < config.PROBABILITY_REPORT
+        else:
+            outcome = config.RANDOM_RNG.choice(config.PROBABILITY_OUTCOME_CLEAR, p=config.PROBABILITY_OUTCOME_CLEAR_RATIO)
+            report = True
 
         return outcome, report
 

@@ -7,7 +7,7 @@ import config
 def calculate_nff_rate():
     df = pd.read_csv(config.PATH_FILE_GENERATE_NFF)
 
-    df['NFF'] = (df['Outcome'].isin(config.PROBABILITY_OUTCOME_FLAKY)) & (df['Report'] == False)
+    df['NFF'] = (df['Outcome'].isin(['FAIL', 'ERROR'])) & (df['Report'] == False)
     df['NFF_Cumulative'] = df.groupby(['Test', 'Version'])['NFF'].cumsum()
     df['NFF_Rate'] = df['NFF_Cumulative'] / df['Run']
 

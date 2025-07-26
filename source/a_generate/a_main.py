@@ -33,6 +33,7 @@ def main():
                         run.name,
                         test.p_clear,
                         test.p_fault,
+                        test.p_delta,
                         test.p_flaky,
                         version.p_flaky,
                         run.p_flaky,
@@ -43,7 +44,6 @@ def main():
                         test.name,
                         version.name,
                         run.name,
-                        run.date,
                         run.outcome,
                         run.report
                     ])
