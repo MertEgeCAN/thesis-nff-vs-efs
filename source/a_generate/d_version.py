@@ -33,7 +33,7 @@ class Version:
         if config.TREND_VERSION == 'increase_sudden':
             p_flaky += self.p_delta if self.name > config.MAX_VERSION / 2 else -self.p_delta
         if config.TREND_VERSION == 'decrease_sudden':
-            p_flaky += self.p_delta if self.name < config.MAX_VERSION / 2 else -self.p_delta
+            p_flaky += self.p_delta if self.name <= config.MAX_VERSION / 2 else -self.p_delta
 
         if p_flaky < config.PROBABILITY_FLAKY_LOW:
             p_flaky = config.PROBABILITY_FLAKY_LOW

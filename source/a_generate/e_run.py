@@ -30,7 +30,7 @@ class Run:
         if config.TREND_RUN == 'increase_sudden':
             p_flaky *= self.name > config.MAX_RUN / 2
         if config.TREND_RUN == 'decrease_sudden':
-            p_flaky *= self.name < config.MAX_RUN / 2
+            p_flaky *= self.name <= config.MAX_RUN / 2
 
         return p_flaky
 

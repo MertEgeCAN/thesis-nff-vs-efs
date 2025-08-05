@@ -3,11 +3,11 @@ import numpy as np
 RANDOM_SEED = 42
 RANDOM_RNG = np.random.default_rng(RANDOM_SEED)
 
-MAIN_GENERATE = True
-MAIN_METRIC = True
+MAIN_GENERATE = False
+MAIN_METRIC = False
 MAIN_ORDER = True
 MAIN_COMPARE = True
-MAIN_VISUAL = True
+MAIN_VISUAL = False
 
 MAX_TEST = 100
 MAX_VERSION = 4
@@ -21,11 +21,11 @@ TRENDS_VERSION = ['uniform', 'increase', 'decrease', 'increase_exponential', 'de
 TREND_RUN = None
 TRENDS_RUN = ['uniform', 'increase', 'decrease', 'increase_exponential', 'decrease_exponential', 'increase_sudden', 'decrease_sudden']
 
-PROBABILITY_CLEAR = 0.1
-PROBABILITY_FAULT = 0.9
-PROBABILITY_FLAKY_LOW = 0.0
-PROBABILITY_FLAKY_HIGH = 0.5
-PROBABILITY_FLAKY_DELTA = 0.5
+PROBABILITY_CLEAR = 0.2
+PROBABILITY_FAULT = 0.8
+PROBABILITY_FLAKY_LOW = 0.1
+PROBABILITY_FLAKY_HIGH = 0.4
+PROBABILITY_FLAKY_DELTA = 0.1
 PROBABILITY_OUTCOME_CLEAR = ['SUCCESSFUL', 'SKIP']
 PROBABILITY_OUTCOME_CLEAR_RATIO = [0.9, 0.1]
 PROBABILITY_OUTCOME_FAULT = ['FAIL', 'SKIP']
