@@ -11,7 +11,7 @@ def calculate_rank_truth():
     df = pd.read_csv(config.PATH_FILE_GENERATE_TRUTH)
 
     df = df[df['Version'] == config.MAX_VERSION]
-    df = df.groupby('Test')["P_Flaky_Version"].mean().sort_values(ascending=False).reset_index()
+    df = df.groupby('Test')["P_Flaky_Test"].mean().sort_values(ascending=False).reset_index()
 
     return df
 
@@ -28,25 +28,27 @@ def calculate_rank_nff():
 
 
 def calculate_rank_efs():
-    df = pd.read_csv(config.PATH_FILE_ORDER_EFS)
+    df = pd.read_csv(config.PATH_FILE_GENERATE_EFS_METRIC)
 
-    df = df.rename(columns={'RENAMED_ID': 'Order'})
+    df = df[df['VERSIONS'] == '{v1~v2~v3~v4}'][['TEST_NAME', 'FLAKINESS_SCORE']].sort_values(by='FLAKINESS_SCORE', ascending=False).reset_index(drop=True)
+    df['TEST_NUM'] = df['TEST_NAME'].str.extract(r'(\d+)').astype(int)
+    df['Order'] = df['TEST_NUM'] - df['TEST_NUM'].min() + 1
 
     return df
 
 
 def calculate_score(truth, order):
-    def top_k_hit(truth, order):
-        k = int(config.MAX_TEST / 10)
+    def top_k_hit(truth, order, k=4):
+        k = int(config.MAX_TEST / k)
         truth_top = set(truth.head(k)["Test"])
         order_top = set(order.head(k)["Order"])
         return len(truth_top & order_top) / k
 
-    spearman = spearmanr(truth["Test"], order["Order"]).correlation
-    kendall = kendalltau(truth["Test"], order["Order"]).correlation
-    hit = top_k_hit(truth, order)
+    spearman = spearmanr(truth["Test"].to_list(), order["Order"].to_list()).correlation
+    kendall = kendalltau(truth["Test"].to_list(), order["Order"].to_list()).correlation
+    top_k_hit = top_k_hit(truth, order)
 
-    return spearman, kendall, hit
+    return spearman, kendall, top_k_hit
 
 
 def calculate_compare():

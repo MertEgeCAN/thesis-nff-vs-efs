@@ -5,17 +5,17 @@ import config
 
 
 def calculate_nff_rate():
-    df = pd.read_csv(config.PATH_FILE_GENERATE_NFF)
+    df = pd.read_csv(config.PATH_FILE_GENERATE_NFF_METRIC)
 
-    df['NFF'] = (df['Outcome'].isin(['FAIL', 'ERROR'])) & (df['Report'] == False)
+    df['NFF'] = (df['Outcome'].isin(['FAIL'])) & (df['Report'] == False)
     df['NFF_Cumulative'] = df.groupby(['Test', 'Version'])['NFF'].cumsum()
     df['NFF_Rate'] = df['NFF_Cumulative'] / df['Run']
 
-    df.to_csv(config.PATH_FILE_GENERATE_NFF, index=False)
+    df.to_csv(config.PATH_FILE_GENERATE_NFF_METRIC, index=False)
 
 
 def calculate_stable_nff_rate():
-    df = pd.read_csv(config.PATH_FILE_GENERATE_NFF)
+    df = pd.read_csv(config.PATH_FILE_GENERATE_NFF_METRIC)
 
     df['Stable_NFF'] = (df['NFF']) & (df['Run'] > config.MAX_RUN / 2)
     df['Stable_NFF_Cumulative'] = df.groupby(['Test', 'Version'])['Stable_NFF'].cumsum()
@@ -25,19 +25,19 @@ def calculate_stable_nff_rate():
 
     df = df.merge(df_merge.rename('Stable_Rate'), on=['Test', 'Version'], how='left')
 
-    df.to_csv(config.PATH_FILE_GENERATE_NFF, index=False)
+    df.to_csv(config.PATH_FILE_GENERATE_NFF_METRIC, index=False)
 
 
 def calculate_confidence(e=0.05, z=1.65):
-    df = pd.read_csv(config.PATH_FILE_GENERATE_NFF)
+    df = pd.read_csv(config.PATH_FILE_GENERATE_NFF_METRIC)
 
     df['Confidence'] = (z ** 2) * df['Stable_Rate'] * (1 - df['Stable_Rate']) / (e ** 2)
 
-    df.to_csv(config.PATH_FILE_GENERATE_NFF, index=False)
+    df.to_csv(config.PATH_FILE_GENERATE_NFF_METRIC, index=False)
 
 
 def calculate_instability():
-    df = pd.read_csv(config.PATH_FILE_GENERATE_NFF)
+    df = pd.read_csv(config.PATH_FILE_GENERATE_NFF_METRIC)
 
     df['Instability'] = binom.sf(
         df['NFF_Cumulative'] - 1,
@@ -45,11 +45,11 @@ def calculate_instability():
         df['Stable_Rate']
     )
 
-    df.to_csv(config.PATH_FILE_GENERATE_NFF, index=False)
+    df.to_csv(config.PATH_FILE_GENERATE_NFF_METRIC, index=False)
 
 
 def calculate_likelihood():
-    df = pd.read_csv(config.PATH_FILE_GENERATE_NFF)
+    df = pd.read_csv(config.PATH_FILE_GENERATE_NFF_METRIC)
 
     df['Likelihood'] = binom.pmf(
         df['NFF_Cumulative'],
@@ -57,14 +57,14 @@ def calculate_likelihood():
         df['Stable_Rate']
     )
 
-    df.to_csv(config.PATH_FILE_GENERATE_NFF, index=False)
+    df.to_csv(config.PATH_FILE_GENERATE_NFF_METRIC, index=False)
 
 
 def calculate_unstable(e=0.05):
-    df = pd.read_csv(config.PATH_FILE_GENERATE_NFF)
+    df = pd.read_csv(config.PATH_FILE_GENERATE_NFF_METRIC)
 
     df_merge = df.groupby(['Test', 'Version'])['Instability'].min().lt(e)
 
     df = df.merge(df_merge.rename('Unstable'), on=['Test', 'Version'], how='left')
 
-    df.to_csv(config.PATH_FILE_GENERATE_NFF, index=False)
+    df.to_csv(config.PATH_FILE_GENERATE_NFF_METRIC, index=False)

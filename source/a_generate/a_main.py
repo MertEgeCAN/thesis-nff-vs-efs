@@ -62,7 +62,6 @@ def main():
     end_total = time.time()
     print(f"    ---- generate finished in {end_total - start_total:.4f} seconds")
 
-
 if __name__ == '__main__':
     main()
     pass

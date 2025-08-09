@@ -12,6 +12,12 @@ class Test:
         self.p_delta = 0 if self.p_clear or self.p_fault else config.PROBABILITY_FLAKY_DELTA
         self.p_flaky = 0 if self.p_clear or self.p_fault else config.RANDOM_RNG.uniform(config.PROBABILITY_FLAKY_LOW, config.PROBABILITY_FLAKY_HIGH)
 
+        # if self.name == 1:
+        #     self.p_clear = False
+        #     self.p_fault = False
+        #     self.p_delta = 0.25
+        #     self.p_flaky = 0.15
+
         self.versions = self.generate_versions()
 
     def generate_versions(self):

@@ -1,9 +1,12 @@
+import shutil
 import time
 
 from source.b_metric.b_metric import *
 
 
 def main():
+    shutil.copy(config.PATH_FILE_GENERATE_NFF, config.PATH_FILE_GENERATE_NFF_METRIC)
+
     print(f"    ---- metric started")
     start_total = time.time()
 
