@@ -7,7 +7,7 @@ MAIN_GENERATE = False
 MAIN_METRIC = False
 MAIN_ORDER = False
 MAIN_COMPARE = True
-MAIN_VISUAL = True
+MAIN_VISUAL = False
 
 MAX_TEST = 100
 MAX_VERSION = 4
@@ -62,8 +62,8 @@ HEADER_EFS = [
     'ENVIRONMENT_ID'
 ]
 HEADER_COMPARE = [
-    'x',
-    'y',
+    'version',
+    'run',
     'nff_spearman',
     'nff_kendall',
     'nff_hit',
@@ -88,6 +88,7 @@ PATH_FOLDER_VISUAL_TRUTH_RUN = 'output/3_plot/0_truth/2_run/'
 PATH_FOLDER_VISUAL_NFF_TEST = 'output/3_plot/1_nff/0_test/'
 PATH_FOLDER_VISUAL_NFF_VERSION = 'output/3_plot/1_nff/1_version/'
 PATH_FOLDER_VISUAL_NFF_RUN = 'output/3_plot/1_nff/2_run/'
+PATH_FOLDER_VISUAL_NFF_TEST_SCATTER = 'output/3_plot/1_nff/3_test_scatter/'
 PATH_FOLDER_VISUAL_NFF_TEST_STABLE = 'output/3_plot/2_nff_stable/0_test/'
 PATH_FOLDER_VISUAL_NFF_VERSION_STABLE = 'output/3_plot/2_nff_stable/1_version/'
 PATH_FOLDER_VISUAL_NFF_RUN_STABLE = 'output/3_plot/2_nff_stable/2_run/'
@@ -108,6 +109,7 @@ PATH_FILE_VISUAL_TRUTH_RUN = None
 PATH_FILE_VISUAL_NFF_TEST = None
 PATH_FILE_VISUAL_NFF_VERSION = None
 PATH_FILE_VISUAL_NFF_RUN = None
+PATH_FILE_VISUAL_NFF_TEST_SCATTER = None
 PATH_FILE_VISUAL_NFF_TEST_STABLE = None
 PATH_FILE_VISUAL_NFF_VERSION_STABLE = None
 PATH_FILE_VISUAL_NFF_RUN_STABLE = None

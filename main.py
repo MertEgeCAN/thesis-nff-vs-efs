@@ -38,6 +38,7 @@ if __name__ == '__main__':
         config.PATH_FOLDER_VISUAL_NFF_TEST,
         config.PATH_FOLDER_VISUAL_NFF_VERSION,
         config.PATH_FOLDER_VISUAL_NFF_RUN,
+        config.PATH_FOLDER_VISUAL_NFF_TEST_SCATTER,
         config.PATH_FOLDER_VISUAL_NFF_TEST_STABLE,
         config.PATH_FOLDER_VISUAL_NFF_VERSION_STABLE,
         config.PATH_FOLDER_VISUAL_NFF_RUN_STABLE,
@@ -72,6 +73,7 @@ if __name__ == '__main__':
             config.PATH_FILE_VISUAL_NFF_TEST = config.PATH_FOLDER_VISUAL_NFF_TEST + config.SUITE_NAME + '.png'
             config.PATH_FILE_VISUAL_NFF_VERSION = config.PATH_FOLDER_VISUAL_NFF_VERSION + config.SUITE_NAME + '.png'
             config.PATH_FILE_VISUAL_NFF_RUN = config.PATH_FOLDER_VISUAL_NFF_RUN + config.SUITE_NAME + '.png'
+            config.PATH_FILE_VISUAL_NFF_TEST_SCATTER = config.PATH_FOLDER_VISUAL_NFF_TEST_SCATTER + config.SUITE_NAME + '.png'
             config.PATH_FILE_VISUAL_NFF_TEST_STABLE = config.PATH_FOLDER_VISUAL_NFF_TEST_STABLE + config.SUITE_NAME + '.png'
             config.PATH_FILE_VISUAL_NFF_VERSION_STABLE = config.PATH_FOLDER_VISUAL_NFF_VERSION_STABLE + config.SUITE_NAME + '.png'
             config.PATH_FILE_VISUAL_NFF_RUN_STABLE = config.PATH_FOLDER_VISUAL_NFF_RUN_STABLE + config.SUITE_NAME + '.png'

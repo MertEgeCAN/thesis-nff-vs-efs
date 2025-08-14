@@ -65,8 +65,8 @@ def calculate_compare():
     difference_hit = nff_hit - efs_hit
 
     data_row = {
-        'x': x,
-        'y': y,
+        'version': x,
+        'run': y,
         'nff_spearman': nff_spearman,
         'nff_kendall': nff_kendall,
         'nff_hit': nff_hit,

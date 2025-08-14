@@ -36,6 +36,11 @@ def main():
     print(f"        -------- plot_nff_run finished in {end - start:.4f} seconds")
 
     start = time.time()
+    plot_nff_test_scatter()
+    end = time.time()
+    print(f"        -------- plot_nff_test_scatter finished in {end - start:.4f} seconds")
+
+    start = time.time()
     plot_nff_test_stable()
     end = time.time()
     print(f"        -------- plot_nff_test_stable finished in {end - start:.4f} seconds")

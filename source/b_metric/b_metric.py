@@ -58,13 +58,3 @@ def calculate_likelihood():
     )
 
     df.to_csv(config.PATH_FILE_GENERATE_NFF_METRIC, index=False)
-
-
-def calculate_unstable(e=0.05):
-    df = pd.read_csv(config.PATH_FILE_GENERATE_NFF_METRIC)
-
-    df_merge = df.groupby(['Test', 'Version'])['Instability'].min().lt(e)
-
-    df = df.merge(df_merge.rename('Unstable'), on=['Test', 'Version'], how='left')
-
-    df.to_csv(config.PATH_FILE_GENERATE_NFF_METRIC, index=False)

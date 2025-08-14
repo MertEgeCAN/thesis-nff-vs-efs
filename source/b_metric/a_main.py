@@ -35,11 +35,6 @@ def main():
     end = time.time()
     print(f"        -------- calculate_likelihood finished in {end - start:.4f} seconds")
 
-    start = time.time()
-    calculate_unstable()
-    end = time.time()
-    print(f"        -------- calculate_unstable finished in {end - start:.4f} seconds")
-
     end_total = time.time()
     print(f"    ---- metric finished in {end_total - start_total:.4f} seconds")
 
