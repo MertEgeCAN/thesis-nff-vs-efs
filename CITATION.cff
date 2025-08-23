@@ -4,5 +4,8 @@ authors:
   - family-names: Can
     given-names: Mert Ege
 title: "Artificial Dataset Generation Framework and No-Fault-Found Algorithm Implementation"
+abstract: "This repository provides a framework for artificial dataset generation framework and NFF algorithm interpreted implementation."
 version: 1.0
 date-released: 2025-08-23
+url: "https://github.com/MertEgeCAN/thesis-nff-vs-efs"
+repository-code: "https://github.com/MertEgeCAN/thesis-nff-vs-efs"
