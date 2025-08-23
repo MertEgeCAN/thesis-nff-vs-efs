@@ -103,8 +103,8 @@ def plot_nff_test():
         ax=ax
     )
 
-    ax.set_xlabel('Test')
-    ax.set_ylabel('NFF Ratio')
+    ax.set_ylabel('Test')
+    ax.set_xlabel('NFF Ratio')
     ax.set_title('NFF Ratio per Test')
 
     fig.tight_layout()
@@ -294,8 +294,8 @@ def plot_efs_test():
         ax=ax
     )
 
-    ax.set_xlabel('Test')
-    ax.set_ylabel('Verdict Ratio')
+    ax.set_ylabel('Test')
+    ax.set_xlabel('Verdict Ratio')
     ax.set_title('Verdict Ratio per Test')
 
     fig.tight_layout()

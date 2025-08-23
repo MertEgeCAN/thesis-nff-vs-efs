@@ -6,8 +6,8 @@ RANDOM_RNG = np.random.default_rng(RANDOM_SEED)
 MAIN_GENERATE = False
 MAIN_METRIC = False
 MAIN_ORDER = False
-MAIN_COMPARE = True
-MAIN_VISUAL = False
+MAIN_COMPARE = False
+MAIN_VISUAL = True
 
 MAX_TEST = 100
 MAX_VERSION = 4
@@ -66,13 +66,13 @@ HEADER_COMPARE = [
     'run',
     'nff_spearman',
     'nff_kendall',
-    'nff_hit',
+    'nff_top_k',
     'efs_spearman',
     'efs_kendall',
-    'efs_hit',
+    'efs_top_k',
     'difference_spearman',
     'difference_kendall',
-    'difference_hit'
+    'difference_top_k'
 ]
 
 PATH_FOLDER_GENERATE_TRUTH = 'output/0_data/0_truth/'

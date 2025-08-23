@@ -27,13 +27,13 @@ def plot_heatmap(pivot_data, title, vmin=-1, vmax=1):
     plt.close()
 
 spearman_pivot = df.pivot(index='run', columns='version', values='difference_spearman')
-plot_heatmap(spearman_pivot, 'Absolute Score Difference in Spearman (NFF - EFS)', vmin=-1, vmax=1)
+plot_heatmap(spearman_pivot, 'Score Difference in Spearman (NFF - EFS)', vmin=-1, vmax=1)
 
 kendall_pivot = df.pivot(index='run', columns='version', values='difference_kendall')
-plot_heatmap(kendall_pivot, 'Absolute Score Difference in Kendall (NFF - EFS)', vmin=-1, vmax=1)
+plot_heatmap(kendall_pivot, 'Score Difference in Kendall (NFF - EFS)', vmin=-1, vmax=1)
 
-hit_pivot = df.pivot(index='run', columns='version', values='difference_hit')
-plot_heatmap(hit_pivot, 'Absolute Score Difference in Top-k Hit (NFF - EFS)', vmin=-1, vmax=1)
+hit_pivot = df.pivot(index='run', columns='version', values='difference_top_k')
+plot_heatmap(hit_pivot, 'Score Difference in Top-k Rate (NFF - EFS)', vmin=-1, vmax=1)
 
 # Convert each to pivoted form
 bino_spear_pivot = df.pivot(index='run', columns='version', values='nff_spearman')
@@ -42,8 +42,8 @@ efs_spear_pivot = df.pivot(index='run', columns='version', values='efs_spearman'
 bino_kendall_pivot = df.pivot(index='run', columns='version', values='nff_kendall')
 efs_kendall_pivot = df.pivot(index='run', columns='version', values='efs_kendall')
 
-bino_hit_pivot = df.pivot(index='run', columns='version', values='nff_hit')
-efs_hit_pivot = df.pivot(index='run', columns='version', values='efs_hit')
+bino_hit_pivot = df.pivot(index='run', columns='version', values='nff_top_k')
+efs_hit_pivot = df.pivot(index='run', columns='version', values='efs_top_k')
 
 # Plot each heatmap
 plot_heatmap(bino_spear_pivot, "NFF Spearman Scores")
@@ -52,8 +52,8 @@ plot_heatmap(efs_spear_pivot, "EFS Spearman Scores")
 plot_heatmap(bino_kendall_pivot, "NFF Kendall Scores")
 plot_heatmap(efs_kendall_pivot, "EFS Kendall Scores")
 
-plot_heatmap(bino_hit_pivot, "NFF Top-k Hit Scores")
-plot_heatmap(efs_hit_pivot, "EFS Top-k HitScores")
+plot_heatmap(bino_hit_pivot, "NFF Top-k Rate Scores")
+plot_heatmap(efs_hit_pivot, "EFS Top-k Rate Scores")
 
 import pandas as pd
 
@@ -61,9 +61,9 @@ import pandas as pd
 df = pd.read_csv('../../' + config.PATH_FILE_COMPARE)
 
 # Define metric groups
-nff_metrics = ['nff_spearman', 'nff_kendall', 'nff_hit']
-efs_metrics = ['efs_spearman', 'efs_kendall', 'efs_hit']
-diff_metrics = ['difference_spearman', 'difference_kendall', 'difference_hit']
+nff_metrics = ['nff_spearman', 'nff_kendall', 'nff_top_k']
+efs_metrics = ['efs_spearman', 'efs_kendall', 'efs_top_k']
+diff_metrics = ['difference_spearman', 'difference_kendall', 'difference_top_k']
 
 def plot_heatmap2(dataframe, title, trend):
     if isinstance(dataframe, pd.DataFrame) and not dataframe.empty:

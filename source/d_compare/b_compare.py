@@ -69,13 +69,13 @@ def calculate_compare():
         'run': y,
         'nff_spearman': nff_spearman,
         'nff_kendall': nff_kendall,
-        'nff_hit': nff_hit,
+        'nff_top_k': nff_hit,
         'efs_spearman': efs_spearman,
         'efs_kendall': efs_kendall,
-        'efs_hit': efs_hit,
+        'efs_top_k': efs_hit,
         'difference_spearman': difference_spearman,
         'difference_kendall': difference_kendall,
-        'difference_hit': difference_hit
+        'difference_top_k': difference_hit
     }
 
     with open(config.PATH_FILE_COMPARE, mode='a', newline='') as file:
