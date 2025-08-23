@@ -62,25 +62,6 @@ def plot_truth_run():
     fig.savefig(config.PATH_FILE_VISUAL_TRUTH_RUN, dpi=300)
     plt.close(fig)
 
-
-# def plot_nff_test():
-#     df = pd.read_csv(config.PATH_FILE_GENERATE_NFF_METRIC)
-#     df = df.groupby("Test")["NFF_Rate"].mean().sort_values().reset_index()
-#
-#     fig, ax = plt.subplots(figsize=(5, 15))
-#
-#     ax.barh(df.index, df['NFF_Rate'])
-#     ax.set_yticks(df.index)
-#     ax.set_yticklabels(df['Test'], fontsize=8)
-#
-#     ax.set_xlabel("NFF Rate")
-#     ax.set_ylabel("Test")
-#     ax.set_title("Average NFF Rate per Test")
-#
-#     fig.tight_layout()
-#     fig.savefig(config.PATH_FILE_VISUAL_NFF_TEST, dpi=300)
-#     plt.close(fig)
-
 def plot_nff_test():
     df = pd.read_csv(config.PATH_FILE_GENERATE_NFF_METRIC)
     df = df.groupby(['Test', 'NFF']).size().unstack(fill_value=0)
@@ -164,10 +145,10 @@ def plot_nff_test_scatter():
         y=df['Run'],
         x=df['Test'],
         c=df['COLOR'],
-        s=100,              # Bigger points
-        alpha=0.9,         # Slight transparency
-        linewidths=0,      # No borders for cleaner look
-        marker='o'         # Circle marker
+        s=100,
+        alpha=0.9,
+        linewidths=0,
+        marker='o'
     )
     unique_tests = sorted(df['Test'].unique())
     ax.set_xticks(unique_tests)
@@ -180,25 +161,6 @@ def plot_nff_test_scatter():
     fig.tight_layout()
     fig.savefig(config.PATH_FILE_VISUAL_NFF_TEST_SCATTER, dpi=300)
     plt.close(fig)
-
-
-# def plot_nff_test_stable():
-#     df = pd.read_csv(config.PATH_FILE_GENERATE_NFF_METRIC)
-#     df = df.groupby("Test")["Stable_NFF_Rate"].mean().sort_values().reset_index()
-#
-#     fig, ax = plt.subplots(figsize=(5, 15))
-#
-#     ax.barh(df.index, df['Stable_NFF_Rate'])
-#     ax.set_yticks(df.index)
-#     ax.set_yticklabels(df['Test'], fontsize=8)
-#
-#     ax.set_xlabel("Stable NFF Rate")
-#     ax.set_ylabel("Test")
-#     ax.set_title("Average Stable NFF Rate per Test")
-#
-#     fig.tight_layout()
-#     fig.savefig(config.PATH_FILE_VISUAL_NFF_TEST_STABLE, dpi=300)
-#     plt.close(fig)
 
 def plot_nff_test_stable():
     df = pd.read_csv(config.PATH_FILE_GENERATE_NFF_METRIC)
@@ -345,10 +307,10 @@ def plot_efs_test_scatter():
         y=df['RUN_INDEX'],
         x=df['TEST_NAME'],
         c=df['COLOR'],
-        s=100,              # Bigger points
-        alpha=0.9,         # Slight transparency
-        linewidths=0,      # No borders for cleaner look
-        marker='o'         # Circle marker
+        s=100,
+        alpha=0.9,
+        linewidths=0,
+        marker='o'
     )
     unique_tests = sorted(df['TEST_NAME'].unique())
     ax.set_xticks(unique_tests)
